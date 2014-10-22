@@ -33,8 +33,7 @@ public class DocumentVectorAnnotator extends JCasAnnotator_ImplBase {
   /**
    * A basic white-space tokenizer, it deliberately does not split on punctuation!
    *
-   * @param doc
-   *          input text
+   * @param doc input text
    * @return a list of tokens.
    */
 

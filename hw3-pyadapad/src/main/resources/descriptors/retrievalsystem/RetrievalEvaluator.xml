@@ -21,7 +21,7 @@
       <nameValuePair>
         <name>output_file</name>
         <value>
-          <string>./src/main/resources/data/report.txt</string>
+          <string>report.txt</string>
         </value>
       </nameValuePair>
     </configurationParameterSettings>

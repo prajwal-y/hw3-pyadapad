@@ -88,7 +88,7 @@ public class RetrievalEvaluator extends CasConsumer_ImplBase {
   }
 
   /**
-   * TODO :: 1. construct the global word dictionary 2. keep the word frequency for each sentence
+   * 1. construct the global word dictionary 2. keep the word frequency for each sentence
    */
   @Override
   public void processCas(CAS aCas) throws ResourceProcessException {
@@ -127,7 +127,6 @@ public class RetrievalEvaluator extends CasConsumer_ImplBase {
         cosineSimilarity = computeCosineSimilarity(queryList, docList);
         // diceSimilarity = computeDiceCoefficient(queryList, docList);
         // jaccardDistance = computeJaccardDistance(queryList, docList);
-        // System.out.println(cosineSimilarity);
       }
 
       if (doc.getRelevanceValue() == 1) {
