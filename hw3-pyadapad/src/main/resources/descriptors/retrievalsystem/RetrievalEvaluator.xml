@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <analysisEngineDescription xmlns="http://uima.apache.org/resourceSpecifier">
   <frameworkImplementation>org.apache.uima.java</frameworkImplementation>
   <primitive>true</primitive>
@@ -9,10 +10,20 @@
     <version>1.0</version>
     <vendor/>
      <configurationParameters>
-      
-   </configurationParameters>
+      <configurationParameter>
+        <name>output_file</name>
+        <type>String</type>
+        <multiValued>false</multiValued>
+        <mandatory>true</mandatory>
+      </configurationParameter>
+    </configurationParameters>
     <configurationParameterSettings>
-      
+      <nameValuePair>
+        <name>output_file</name>
+        <value>
+          <string>./src/main/resources/data/report.txt</string>
+        </value>
+      </nameValuePair>
     </configurationParameterSettings>
     <typeSystemDescription>
       <imports>            

@@ -11,8 +11,8 @@ import org.apache.uima.jcas.tcas.Annotation;
 
 
 /** 
- * Updated by JCasGen Fri Oct 11 01:58:03 EDT 2013
- * XML source: /home/diwang/ur-workspace/hw3-pyadapad/src/main/resources/descriptors/typesystems/VectorSpaceTypes.xml
+ * Updated by JCasGen Wed Oct 22 04:24:38 EDT 2014
+ * XML source: /home/prajwal/git/hw3-pyadapad/hw3-pyadapad/src/main/resources/descriptors/retrievalsystem/RetrievalEvaluator.xml
  * @generated */
 public class Token extends Annotation {
   /** @generated
@@ -54,10 +54,13 @@ public class Token extends Annotation {
     readObject();
   }   
 
-  /** <!-- begin-user-doc -->
+  /** 
+   * <!-- begin-user-doc -->
     * Write your own initialization here
     * <!-- end-user-doc -->
-  @generated modifiable */
+  *
+   * @generated modifiable 
+   */
   private void readObject() {/*default - does nothing empty block */}
      
  
@@ -66,14 +69,18 @@ public class Token extends Annotation {
   //* Feature: text
 
   /** getter for text - gets 
-   * @generated */
+   * @generated
+   * @return value of the feature 
+   */
   public String getText() {
     if (Token_Type.featOkTst && ((Token_Type)jcasType).casFeat_text == null)
       jcasType.jcas.throwFeatMissing("text", "edu.cmu.lti.f14.hw3.hw3_pyadapad.typesystems.Token");
     return jcasType.ll_cas.ll_getStringValue(addr, ((Token_Type)jcasType).casFeatCode_text);}
     
   /** setter for text - sets  
-   * @generated */
+   * @generated
+   * @param v value to set into the feature 
+   */
   public void setText(String v) {
     if (Token_Type.featOkTst && ((Token_Type)jcasType).casFeat_text == null)
       jcasType.jcas.throwFeatMissing("text", "edu.cmu.lti.f14.hw3.hw3_pyadapad.typesystems.Token");
@@ -84,14 +91,18 @@ public class Token extends Annotation {
   //* Feature: frequency
 
   /** getter for frequency - gets 
-   * @generated */
+   * @generated
+   * @return value of the feature 
+   */
   public int getFrequency() {
     if (Token_Type.featOkTst && ((Token_Type)jcasType).casFeat_frequency == null)
       jcasType.jcas.throwFeatMissing("frequency", "edu.cmu.lti.f14.hw3.hw3_pyadapad.typesystems.Token");
     return jcasType.ll_cas.ll_getIntValue(addr, ((Token_Type)jcasType).casFeatCode_frequency);}
     
   /** setter for frequency - sets  
-   * @generated */
+   * @generated
+   * @param v value to set into the feature 
+   */
   public void setFrequency(int v) {
     if (Token_Type.featOkTst && ((Token_Type)jcasType).casFeat_frequency == null)
       jcasType.jcas.throwFeatMissing("frequency", "edu.cmu.lti.f14.hw3.hw3_pyadapad.typesystems.Token");
