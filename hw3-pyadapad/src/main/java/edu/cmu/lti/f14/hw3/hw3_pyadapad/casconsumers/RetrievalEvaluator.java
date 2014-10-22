@@ -25,29 +25,25 @@ import edu.cmu.lti.f14.hw3.hw3_pyadapad.typesystems.Document;
 import edu.cmu.lti.f14.hw3.hw3_pyadapad.typesystems.Token;
 import edu.cmu.lti.f14.hw3.hw3_pyadapad.utils.Utils;
 
+/**
+ * This class is responsible for 
+ * @author pyadapad
+ *
+ */
 public class RetrievalEvaluator extends CasConsumer_ImplBase {
 
-  /** query id number **/
-  public ArrayList<Integer> qIdList;
-
-  /** query and text relevant values **/
-  public ArrayList<Integer> relList;
-
-  public HashMap<Integer, Integer> rankList;
-
-  public ArrayList<Double> similarityList;
-
-  public ArrayList<String> sentenceList;
+  public ArrayList<Integer> qIdList; //Query ID List
+  public ArrayList<Integer> relList; //The relevant query List
+  public HashMap<Integer, Integer> rankList; //The Query rank list
+  public ArrayList<Double> similarityList; //The Similarity values list
+  public ArrayList<String> sentenceList; //The query text list
 
   // Variables used by processCas
   private static HashMap<String, Integer> queryList = new HashMap<String, Integer>();
-
   private static HashMap<String, Integer> docList = new HashMap<String, Integer>();
-
   private static ArrayList<Double> similarityValues = new ArrayList<Double>();
-
   private static double cosineSimilarity = 0.0;
-
+  /** Implementations of dice coefficient and Jaccard distance are commented out**/
   // private static double diceSimilarity = 0.0;
   // private static double jaccardDistance = 0.0;
   private static double relCos = 0.0;
@@ -88,7 +84,8 @@ public class RetrievalEvaluator extends CasConsumer_ImplBase {
   }
 
   /**
-   * 1. construct the global word dictionary 2. keep the word frequency for each sentence
+   * This method processes the queries and documents and stores all the
+   * required values (Similarity values and rank)
    */
   @Override
   public void processCas(CAS aCas) throws ResourceProcessException {
@@ -103,8 +100,6 @@ public class RetrievalEvaluator extends CasConsumer_ImplBase {
     FSIterator<?> it = jcas.getAnnotationIndex(Document.type).iterator();
     if (it.hasNext()) {
       Document doc = (Document) it.next();
-
-      // Make sure that your previous annotators have populated this in CAS
       FSList fsTokenList = doc.getTokenList();
       ArrayList<Token> tokenList = Utils.fromFSListToCollection(fsTokenList, Token.class);
       if (doc.getRelevanceValue() == 99) {
@@ -113,6 +108,7 @@ public class RetrievalEvaluator extends CasConsumer_ImplBase {
         docList.clear();
         relCos = -1.0;
         cosineSimilarity = 0.0;
+        /** Implementations of dice coefficient and Jaccard distance are commented out**/
         // diceSimilarity = 0.0;
         // jaccardDistance = 0.0;
         rank = 1;
@@ -125,6 +121,7 @@ public class RetrievalEvaluator extends CasConsumer_ImplBase {
           docList.put(token.getText(), token.getFrequency());
         }
         cosineSimilarity = computeCosineSimilarity(queryList, docList);
+        /** Implementations of dice coefficient and Jaccard distance are commented out**/
         // diceSimilarity = computeDiceCoefficient(queryList, docList);
         // jaccardDistance = computeJaccardDistance(queryList, docList);
       }
@@ -133,6 +130,7 @@ public class RetrievalEvaluator extends CasConsumer_ImplBase {
         qIdList.add(doc.getQueryID());
         relList.add(doc.getRelevanceValue());
         similarityList.add(cosineSimilarity);
+        /** Implementations of dice coefficient and Jaccard distance are commented out**/
         // similarityList.add(diceSimilarity);
         // similarityList.add(jaccardDistance);
         sentenceList.add(doc.getText());
@@ -142,11 +140,13 @@ public class RetrievalEvaluator extends CasConsumer_ImplBase {
         rankList.put(doc.getQueryID(), computeRank());
       } else if (relCos == -1.0 && doc.getRelevanceValue() != 99) {
         similarityValues.add(cosineSimilarity);
+        /** Implementations of dice coefficient and Jaccard distance are commented out**/
         // similarityValues.add(diceSimilarity);
         // similarityValues.add(jaccardDistance);
       } else {
         if (relCos < cosineSimilarity)
           rankList.put(doc.getQueryID(), ++rank);
+        /** Implementations of dice coefficient and Jaccard distance are commented out**/
         /*
          * if(relCos < diceSimilarity) rankList.put(doc.getQueryID(), ++rank);
          */
@@ -159,7 +159,7 @@ public class RetrievalEvaluator extends CasConsumer_ImplBase {
   }
 
   /**
-   * TODO 1. Compute Cosine Similarity and rank the retrieved sentences 2. Compute the MRR metric
+   * This method saves the outputs to the specified file in the specified format
    */
   @Override
   public void collectionProcessComplete(ProcessTrace arg0) throws ResourceProcessException,
@@ -184,7 +184,7 @@ public class RetrievalEvaluator extends CasConsumer_ImplBase {
   }
 
   /**
-   * 
+   * Computes cosine similarity for two vectors
    * @return cosine_similarity
    */
   private double computeCosineSimilarity(Map<String, Integer> queryVector,
@@ -207,7 +207,7 @@ public class RetrievalEvaluator extends CasConsumer_ImplBase {
   }
 
   /**
-   * 
+   * Compute Dice coefficient for two vectors
    * @return Sørensen–Dice_coefficient
    */
   private double computeDiceCoefficient(Map<String, Integer> queryVector,
@@ -230,7 +230,7 @@ public class RetrievalEvaluator extends CasConsumer_ImplBase {
   }
 
   /**
-   * 
+   * Compute Jaccard distance for two vectors
    * @return Jaccard distance
    */
   private double computeJaccardDistance(Map<String, Integer> queryVector,
@@ -253,7 +253,7 @@ public class RetrievalEvaluator extends CasConsumer_ImplBase {
   }
 
   /**
-   * 
+   * Compute MRR for the set of ranks
    * @return mrr
    */
   private double compute_mrr() {

@@ -45,7 +45,7 @@ public class DocumentVectorAnnotator extends JCasAnnotator_ImplBase {
   }
 
   /**
-   * 
+   * Get the tokens from the given tokenizer and pass it on to RetrievalEvaluator
    * @param jcas
    * @param doc
    */
