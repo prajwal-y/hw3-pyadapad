@@ -26,7 +26,8 @@ import edu.cmu.lti.f14.hw3.hw3_pyadapad.typesystems.Token;
 import edu.cmu.lti.f14.hw3.hw3_pyadapad.utils.Utils;
 
 /**
- * This class is responsible for 
+ * This class is responsible for computing the ranks and MRRs using 
+ * cosine similarity, dice coefficient and Jaccard distance functions.
  * @author pyadapad
  *
  */
